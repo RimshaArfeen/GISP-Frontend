@@ -10,7 +10,6 @@ const AcademicPrograms = () => {
     className: "center",
     centerMode: true,
     infinite: true,
-    centerMode: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     variableWidth: false,

@@ -17,10 +17,7 @@ const Login = () => {
   const onSubmit = async (data, role) => {
     try {
       const finalData = { ...data, role };
-      console.log(finalData);
-      
-
-      const result = await fetch("http://localhost:3000/login", {
+      const result = await fetch("https://sample-backend-topaz.vercel.app//login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -29,21 +26,19 @@ const Login = () => {
       });
 
       const responseData = await result.json();
-      console.log("Response from server:", responseData); // 👈 See what's returned
 
-      if (responseData.auth && responseData.user.role === role) {
+      if (responseData.auth && responseData.user?.role === role) {
         localStorage.setItem("Applicants", JSON.stringify(responseData.user));
         localStorage.setItem("token", responseData.auth);
-        console.log("User Logged in successfully", responseData);
-        if (responseData.user.role === "student") {
-          navigate("/home/student");
-        } else if (responseData.user.role === "admin") {
+
+        if (role === "student") {
+          navigate("/home");
+        } else if (role === "admin") {
           navigate("/adminDashboard");
         }
       } else {
-        console.log("Invalid credentials or role mismatch");
+        alert("Invalid credentials or role mismatch");
       }
-
     } catch (error) {
       console.log("Login failed:", error.message);
     }
@@ -59,10 +54,6 @@ const Login = () => {
             type="email"
             {...register("email", {
               required: "Email is required",
-              minLength: {
-                value: 4,
-                message: "Minimum length is 4 characters",
-              },
               pattern: {
                 value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
                 message: "Invalid email format",

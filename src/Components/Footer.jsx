@@ -3,21 +3,6 @@ import React, {useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
 const Footer = () => {
 
-    const [applicants, setApplicants] = useState(null)
-
-    useEffect(() => {
-     let storedApplicants = localStorage.getItem("Applicants")
-     try {
-        const parsed = storedApplicants ?JSON.parse(storedApplicants):null
-        console.log(parsed);
-        
-        setApplicants(parsed)
-     } catch (error) {
-        console.log("Error encountering: " , error);
-        alert("Please enter valid credentials")
-     }
-    }, [])
-    
   return (
     
 
@@ -40,30 +25,22 @@ const Footer = () => {
                   <h2 className="mb-6 text-sm font-semibold heading-custom uppercase dark:text-white">Universities</h2>
                   <ul className="text-custom dark:text-gray-400 font-medium">
                       <li className="mb-4">
-                          <a href="https://flowbite.com/" className="hover:underline">Sabanci University</a>
+                          <a href="https://www.sabanciuniv.edu/" className="hover:underline">Sabanci University</a>
                       </li>
                       <li className="mb-4">
-                          <a href="https://tailwindcss.com/" className="hover:underline">Yale University</a>
+                          <a href="https://www.manchester.ac.uk/" className="hover:underline">Yale University</a>
                       </li>
                       <li>
-                          <a href="https://tailwindcss.com/" className="hover:underline">Manchester University</a>
+                          <a href="https://www.yale.edu/" className="hover:underline">Manchester University</a>
                       </li>
-                      {applicants ? (
-
-                      <NavLink to={`/applicationForm/${applicants.role}`} className=" mt-[72px] w-full inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center heading-custom rounded-lg bg-custom  focus:ring-4 focus:ring-gray-500 dark:focus:ring-gray-900">
+                 
+                      <NavLink to={`/applicationForm`} className=" mt-[72px] w-full inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center heading-custom rounded-lg bg-custom  focus:ring-4 focus:ring-gray-500 dark:focus:ring-gray-900">
               Apply now
               <svg className="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
               </svg>
             </NavLink>
-                      ) : (
-                        <NavLink to="/signup" className=" mt-[72px] w-full inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center heading-custom rounded-lg bg-custom  focus:ring-4 focus:ring-gray-500 dark:focus:ring-gray-900">
-            Sign Up
-              <svg className="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-              </svg>
-            </NavLink>
-                      )}
+                    
                   </ul>
               </div>
               <div>

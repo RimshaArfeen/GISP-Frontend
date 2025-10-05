@@ -52,7 +52,7 @@ const ApplicationForm = () => {
           }
           else {
                try {
-                    const response = await fetch("http://localhost:3000/applicationForm/:id", {
+                    const response = await fetch(`https://sample-backend-topaz.vercel.app//applicationForm`, {
                          method: "POST",
                          body: formData,
                     });
@@ -61,9 +61,9 @@ const ApplicationForm = () => {
                          const responseData = await response.json();
                          localStorage.setItem("StudentData", JSON.stringify(responseData));
                          alert("Your data has been submitted!");
-                         console.log(responseData);
+                        
 
-                         navigate("/:id/home");
+                         navigate("/home");
                     } else {
                          const text = await response.text();
                          console.error("Server error:", text);
@@ -80,11 +80,9 @@ const ApplicationForm = () => {
      const handleScholarship = () => {
           const percentage = getValues("percentage");
           const scholarshipOption = getValues("scholarship");
-          console.log("Your percentage is:", percentage);
-          console.log("Scholarship selected:", scholarshipOption);
-
+        
           if (!percentage) {
-               console.log("Please enter your percentage before selecting a scholarship.");
+               ("Please enter your percentage before selecting a scholarship.");
                return;
           }
 
@@ -92,15 +90,17 @@ const ApplicationForm = () => {
                setField("By Faculty")
                if (percentage >= 80 && percentage < 85) {
                     setEligibility("low");
-                    console.log("Eligibility set to low");
+                   
+                    
                } else if (percentage >= 85 && percentage < 90) {
                     setEligibility("medium");
-                    console.log("Eligibility set to medium");
+                   
+                    
                } else if (percentage >= 90) {
                     setEligibility("high");
-                    console.log("Eligibility set to high");
+                   
+                    
                } else {
-                    console.log("Sorry! Your percentage does not meet scholarship criteria.");
                     setEligibility(null); // Reset eligibility if criteria are not met
                }
           }
@@ -108,15 +108,14 @@ const ApplicationForm = () => {
                setField("By University")
                if (percentage >= 80 && percentage < 85) {
                     setEligibility("low");
-                    console.log("Eligibility set to low");
+                   
                } else if (percentage >= 85 && percentage < 90) {
                     setEligibility("medium");
-                    console.log("Eligibility set to medium");
+                   
                } else if (percentage >= 90) {
                     setEligibility("high");
-                    console.log("Eligibility set to high");
+                  
                } else {
-                    console.log("Sorry! Your percentage does not meet scholarship criteria.");
                     setEligibility(null); // Reset eligibility if criteria are not met
                }
           }

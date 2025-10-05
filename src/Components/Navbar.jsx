@@ -1,7 +1,9 @@
+
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 const Navbar = () => {
+  
   const [isOpen, setIsOpen] = useState(false);
   const [applicants, setApplicants] = useState(null);
 
@@ -33,11 +35,11 @@ const Navbar = () => {
           <div className="hidden md:flex space-x-8">
             {applicants ? (
               <>
-                <NavLink to={`/home/${applicants.role}`} className=" hover:text-teal-300 transition uppercase tracking-widest">Home</NavLink>
-                <NavLink to={`/overview/${applicants.role}`} className=" hover:text-teal-300 transition uppercase tracking-widest">Overview</NavLink>
-                <NavLink to={`/scholarships/${applicants.role}`} className=" hover:text-teal-300 transition uppercase tracking-widest">Scholarships</NavLink>
-                <NavLink to={`/contact/${applicants.role}`} className=" hover:text-teal-300 transition uppercase tracking-widest">Contact</NavLink>
-                <NavLink to={`/profile/${applicants.role}`} className=" hover:text-teal-300 transition uppercase tracking-widest">Profile</NavLink>
+                <NavLink to={`/home`} className=" hover:text-teal-300 transition uppercase tracking-widest">Home</NavLink>
+                <NavLink to={`/overview`} className=" hover:text-teal-300 transition uppercase tracking-widest">Overview</NavLink>
+                <NavLink to={`/scholarships`} className=" hover:text-teal-300 transition uppercase tracking-widest">Scholarships</NavLink>
+                <NavLink to={`/contact`} className=" hover:text-teal-300 transition uppercase tracking-widest">Contact</NavLink>
+                <NavLink to={`/profile`} className=" hover:text-teal-300 transition uppercase tracking-widest">Profile</NavLink>
                 {applicants.role === "admin" && (
 
                 <NavLink to="/adminDashboard" className=" hover:text-teal-300 transition uppercase tracking-widest">Admin dashboard</NavLink>
@@ -61,11 +63,11 @@ const Navbar = () => {
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-teal shadow-md">
           {applicants ? (
             <>
-              <NavLink to={`/home/${applicants.role}`} className="block  hover:text-teal-300 transition uppercase tracking-widest">Home</NavLink>
-              <NavLink to={`/overview/${applicants.role}`} className="block  hover:text-teal-300 transition uppercase tracking-widest">Overview</NavLink>
-              <NavLink to={`/scholarships/${applicants.role}`} className="block  hover:text-teal-300 transition uppercase tracking-widest">Scholarships</NavLink>
-              <NavLink to={`/contact/${applicants.role}`} className="block  hover:text-teal-300 transition uppercase tracking-widest">Contact</NavLink>
-              <NavLink to={`/profile/${applicants.role}`} className="block  hover:text-teal-300 transition uppercase tracking-widest">Profile</NavLink>
+              <NavLink to={`/home`} className="block  hover:text-teal-300 transition uppercase tracking-widest">Home</NavLink>
+              <NavLink to={`/overview`} className="block  hover:text-teal-300 transition uppercase tracking-widest">Overview</NavLink>
+              <NavLink to={`/scholarships`} className="block  hover:text-teal-300 transition uppercase tracking-widest">Scholarships</NavLink>
+              <NavLink to={`/contact`} className="block  hover:text-teal-300 transition uppercase tracking-widest">Contact</NavLink>
+              <NavLink to={`/profile`} className="block  hover:text-teal-300 transition uppercase tracking-widest">Profile</NavLink>
             </>
           ) : (
             <>

@@ -1,10 +1,8 @@
-
-import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -12,46 +10,75 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data, role) => {
-    try {
-      const finalData = { ...data, role }
-      let result = await fetch("http://localhost:3000/signup", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(finalData)
-      });
-  
-      result = await result.json();
-      console.log("API Response:", result); // Debugging: Check response structure
-  
-      if (result.result && result.auth) {
-        localStorage.setItem("Applicants", JSON.stringify(result.result)); 
-        localStorage.setItem("token", result.auth);
-        console.log("Signed up successfully", result);
-        navigate("/ ");
-      } else {
-        console.error("Invalid API response format:", result);
-        alert("Invalid response from server. Check console for details.");
-      }
-    } catch (error) {
-      console.log("Sign up error:", error);
-      alert("Encountered an error while signing up: " + error.message);
+const onSubmit = async (data) => {
+  try {
+    const finalData = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    };
+
+    const response = await fetch("https://sample-backend-topaz.vercel.app//signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(finalData)
+    });
+
+    // Check response content type
+    const contentType = response.headers.get("content-type");
+    if (!contentType?.includes("application/json")) {
+      const text = await response.text();
+      console.error("Backend returned:", text);
+      throw new Error("Server returned an invalid response format");
     }
-  };
+
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      throw new Error(responseData.message || `Signup failed with status ${response.status}`);
+    }
+
+    // Modified authentication check
+    if (responseData.token || responseData.auth) {
+      const token = responseData.token || responseData.auth;
+      localStorage.setItem("token", token);
+      
+      if (responseData.user) {
+        localStorage.setItem("Applicants", JSON.stringify(responseData.user));
+        navigate(responseData.user.role === "admin" 
+          ? "/adminDashboard" 
+          : "/student/home");
+      } else {
+        navigate("/student/home"); // Fallback if no user data
+      }
+    } else {
+      throw new Error("Authentication token not received from server");
+    }
+  } catch (error) {
+    console.error("Sign up error:", error);
+    alert(
+      error.message.includes("Failed to fetch") 
+        ? "Network error - check your connection"
+        : error.message.includes("invalid response") 
+          ? "Server configuration error"
+          : error.message
+    );
+  }
+};
   
-  // Watch password to validate confirm password
   const password = watch("password");
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md mt-20">
-        <h2 className=" w-fit mx-auto  text-center text-2xl font-bold  heading-custom mb-6">Sign Up
+        <h2 className="w-fit mx-auto text-center text-2xl font-bold heading-custom mb-6">
+          Sign Up
           <div className='h-0.5 w-full bg-amber-600 my-1'></div>
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-
           {/* Name Field */}
           <div>
             <label className="block text-custom">Name</label>
@@ -105,10 +132,6 @@ const SignUp = () => {
                   value: 8,
                   message: "Password must be at least 8 characters long",
                 },
-                // pattern: {
-                //   value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                //   message: "Password must include uppercase, lowercase, number, and special character",
-                // },
               })}
               className="w-full px-4 py-2 border-customborder-teal-600 rounded-lg focus:outline-none focus:ring-1 focus:ring-teal-500 border-[1px] border-teal-500 text-sm"
             />
@@ -135,7 +158,6 @@ const SignUp = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            onClick={handleSubmit((data) => onSubmit(data, "student"))}
             className="w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700 transition"
           >
             Sign Up
@@ -144,7 +166,7 @@ const SignUp = () => {
 
         <p className="text-center text-custom mt-4">
           Already have an account?{" "}
-          <a href="/ " className="text-teal-600 hover:underline">
+          <a href="/" className="text-teal-600 hover:underline">
             Log In
           </a>
         </p>

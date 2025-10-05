@@ -26,7 +26,7 @@ const Profile = () => {
         return;
       }
 
-      let response = await fetch('http://localhost:3000/profile', {
+      let response = await fetch('https://sample-backend-topaz.vercel.app//profile', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -40,7 +40,6 @@ const Profile = () => {
 
       let result = await response.json();
       setData(result.authData.user);
-      console.log(result.authData.user);
 
     } catch (error) {
       console.error('Error fetching profile:', error);

@@ -8,17 +8,7 @@ import AcademicPrograms from '../AcademicPrograms/AcademicPrograms'
 import About from '../About/About'
 
 const Home = () => {
-    const [applicants, setApplicants] = useState(null);
-  useEffect(() => {
-  const storedApplicants = localStorage.getItem("Applicants");
-  try {
-    const parsed = storedApplicants ? JSON.parse(storedApplicants) : null;
-    setApplicants(parsed);
-  } catch (error) {
-    console.error("Error parsing Applicants from localStorage:", error);
-    localStorage.removeItem("Applicants");
-  }
-}, []);
+   
 
   return (
     <>
@@ -35,9 +25,8 @@ const Home = () => {
           </p>
           
           <div className="flex flex-wrap justify-center space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
-            {applicants && (
-              <>
-              <NavLink to={`/applicationForm/${applicants.role}`} 
+          
+              <NavLink to={`/applicationForm`} 
                 className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-white rounded-lg bg-teal-700 
                 hover:bg-teal-800 focus:ring-4 focus:ring-blue-300 dark:focus:teal-blue-900">
                 Apply now
@@ -46,14 +35,11 @@ const Home = () => {
                 </svg>
               </NavLink>
               
-            <NavLink to={`/scholarships/${applicants.role}`} className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-white rounded-lg border border-white 
+            <NavLink to={`/scholarships`} className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-white rounded-lg border border-white 
             hover:bg-teal-100 hover:text-gray-900 focus:ring-4 focus:ring-gray-400">
               See Guidelines
             </NavLink>
-              </>
-
-            )}
-            
+           
           </div>
         </div>
       </section>

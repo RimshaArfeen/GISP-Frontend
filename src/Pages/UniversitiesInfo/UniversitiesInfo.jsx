@@ -66,10 +66,10 @@ export const UniDetails = () => {
         </div>
 
         {/* <!-- Contact Info Section --> */}
-        
-          <div className="w-full flex flex-wrap justify-around mt-12">
+
+        <div className="w-full flex flex-wrap justify-around mt-12">
           {university.contact.map((item, index) => (
-            <div key={index}  className="p-4 lg:w-1/3 md:w-3/4 mx-auto w-full">
+            <div key={index} className="p-4 lg:w-1/3 md:w-3/4 mx-auto w-full">
               <div className="flex items-center bg-[rgba(0,0,0,0.4)] rounded-lg p-6">
                 <div className="material-icons flex items-center justify-center rounded-full bg-blue-100 text-teal-800 p-2 px-3 ">
                   <span className=" text-3xl">
@@ -81,9 +81,9 @@ export const UniDetails = () => {
                 </div>
               </div>
             </div>
-           
+
           ))}
-          </div>
+        </div>
 
       </div>
 
@@ -136,27 +136,24 @@ export const UniDetails = () => {
 
               <div className="flex lg:w-[84%] w-full flex-col md:flex-row mx-auto mb-5   items-start justify-between px-8 lg:px-0">
 
-              
+                <ol className="relative w-full md:w-1/2 lg:w-[46%] heading-custom border-s-[0.6px] border-teal-500 dark:border-gray-700 dark:text-gray-400 text-left mx-2 my-3">
+                  <h2 className="text-2xl font-bold tracking-tight title-font heading-custom m-3 mt-0 mb-0 ">Eligibility Criteria</h2>
+                  <hr className=' h-[0.6px] w-3/4 md:w-[50%] text-amber-600 mt-1 mb-2 ml-4' />
 
-<ol className="relative w-full md:w-1/2 lg:w-[46%] heading-custom border-s-[0.6px] border-teal-500 dark:border-gray-700 dark:text-gray-400 text-left mx-2 my-3"> 
-<h2 className="text-2xl font-bold tracking-tight title-font heading-custom m-3 mt-0 mb-0 ">Eligibility Criteria</h2>
-<hr className=' h-[0.6px] w-3/4 md:w-[50%] text-amber-600 mt-1 mb-2 ml-4' />
+                  {item.eligibilityCriteria.map((item, index) => (
 
-{item.eligibilityCriteria.map((item, index) => (
-                 
-    <li key={index}  className="mb-10 ms-6">            
-        <span className="absolute flex items-center justify-center p-4 w-8 h-8 bg-teal-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-teal-900">
-            <span className={`material-icons text-2xl p-2 rounded-full border-[0.6px] border-teal-400 bg-blue-200 text-custom `}>
-            {item.icon}
-            </span>
-        </span>
-        <h3 className="text-lg font-semibold heading-custom pl-2  underline underline-offset-4 ">{item.title}</h3>
-        <p className="text-base pl-2 text-custom">{item.description}</p>
-    </li>
-   
-  ))}
-</ol>
+                    <li key={index} className="mb-10 ms-6">
+                      <span className="absolute flex items-center justify-center p-4 w-8 h-8 bg-teal-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-teal-900">
+                        <span className={`material-icons text-2xl p-2 rounded-full border-[0.6px] border-teal-400 bg-blue-200 text-custom `}>
+                          {item.icon}
+                        </span>
+                      </span>
+                      <h3 className="text-lg font-semibold heading-custom pl-2  underline underline-offset-4 ">{item.title}</h3>
+                      <p className="text-base pl-2 text-custom">{item.description}</p>
+                    </li>
 
+                  ))}
+                </ol>
 
                 <ol className=" w-full md:w-1/2 lg:w-[46%] relative border-s-[0.6px] border-blue-400 my-3 text-left mx-2 text-custom">
                   <li className="mb-10 ms-6">
@@ -182,17 +179,12 @@ export const UniDetails = () => {
                   </li>
 
                 </ol>
-
-
-
-
-
               </div></>
 
           ))}
           <div className="flex flex-col md:flex-row items-center md:items-start mx-auto mt-8  bg-gray-300 w-full py-14 px-8 ">
             <h1 className="flex-grow sm:pr-16 font-semibold text-3xl title-font  heading-custom tracking-wider">Unlock Your Future – Take the First Step Today!</h1>
-            <NavLink to='/applicationInfo/student' className=" text-2xl w-full md:w-1/3 lg:w-1/4 flex-shrink-0 text-white bg-teal  border-0 py-4 px-16 focus:outline-none hover:bg-teal-600 rounded md:text-lg mt-10 md:mt-0 uppercase ">Apply Now </NavLink>
+            <NavLink to='/applicationForm' className=" text-2xl w-full md:w-1/3 lg:w-1/4 flex-shrink-0 text-white bg-teal  border-0 py-4 px-16 focus:outline-none hover:bg-teal-600 rounded md:text-lg mt-10 md:mt-0 uppercase ">Apply Now </NavLink>
           </div>
 
 
