@@ -26,7 +26,7 @@ const Profile = () => {
         return;
       }
 
-      let response = await fetch('https://sample-backend-topaz.vercel.app//profile', {
+      let response = await fetch('https://sample-backend-topaz.vercel.app/profile', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,

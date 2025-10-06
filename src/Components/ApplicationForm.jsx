@@ -52,7 +52,7 @@ const ApplicationForm = () => {
           }
           else {
                try {
-                    const response = await fetch(`https://sample-backend-topaz.vercel.app//applicationForm`, {
+                    const response = await fetch(`https://sample-backend-topaz.vercel.app/applicationForm`, {
                          method: "POST",
                          body: formData,
                     });

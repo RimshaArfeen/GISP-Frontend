@@ -12,6 +12,6 @@ export default defineConfig({
   ],
    base: "./",
    proxy: {
-  '/api': 'https://sample-backend-topaz.vercel.app/',
+  '/api': 'https://sample-backend-topaz.vercel.app',
 }
 })
