@@ -17,7 +17,7 @@ const Login = () => {
   const onSubmit = async (data, role) => {
     try {
       const finalData = { ...data, role };
-      const result = await fetch("https://sample-backend-topaz.vercel.app/login", {
+      const result = await fetch("api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

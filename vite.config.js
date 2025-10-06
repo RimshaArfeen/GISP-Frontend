@@ -10,7 +10,7 @@ export default defineConfig({
     tailwindcss(),
 
   ],
-   base: "./",
+   base: "/",
    proxy: {
   '/api': 'https://sample-backend-topaz.vercel.app',
 }

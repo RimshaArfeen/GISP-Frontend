@@ -18,7 +18,7 @@ const onSubmit = async (data) => {
       password: data.password,
     };
 
-    const response = await fetch("https://sample-backend-topaz.vercel.app/signup", {
+    const response = await fetch("api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
